@@ -12,48 +12,30 @@ COPY class-setup.php.patch class-setup.php.patch
 
 # Install packages from testing repo's
 RUN apk add --no-cache --virtual .build-deps \
-#    imagemagick-dev \
     unzip \
- #   tar \
     openssl \
     ca-certificates \
-#    build-base \
-#    autoconf \
-#    libtool \
     wget \
     patch \
  && apk --no-cache add \
     nginx \
-#    php7-mbstring \
+    php7-mbstring \
     php7-fpm \
-#    php7-exif \
-#    php7-gd \
+    php7-exif \
+    php7-gd \
     php7-json \
-#    php7-zip \
+    php7-zip \
     php7-session \
-#    php7-pear \
-#    php7-dev \
     supervisor  \
     zip \
-#    acl \
-#    ffmpeg \
-#    imagemagick \
+    acl \
+    ffmpeg \
+    imagemagick \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
 
  # Install packages from stable repo's
  && apk --no-cache add supervisor curl \
-
- # Install and config imagick
-# && cd /tmp \
-# && wget -q https://pecl.php.net/get/imagick-${IMAGICK_EXT_VERSION}.tgz \
-# && tar xzf imagick-${IMAGICK_EXT_VERSION}.tgz \
-# && cd imagick-${IMAGICK_EXT_VERSION} \
-# && phpize7 \
-# && ./configure --with-php-config=/usr/bin/php-config7 \
-# && make \
-# && make install \
-# && echo "extension=imagick.so" > /etc/php7/conf.d/00_imagick.ini \
 
  # Install h5ai
  && wget --no-check-certificate  https://release.larsjung.de/h5ai/h5ai-${H5AI_VERSION}.zip -P /tmp \
